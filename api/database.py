@@ -12,7 +12,7 @@ DATABASE_URL = (f"postgresql+asyncpg://{config_parameters.POSTGRES_DB_USERNAME}:
 database = databases.Database(DATABASE_URL)
 Base = declarative_base()
 
-engine = create_async_engine(DATABASE_URL)
+engine = create_async_engine(DATABASE_URL, echo=True)
 async_session_maker = sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
 
 

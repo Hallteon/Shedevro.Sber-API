@@ -6,10 +6,111 @@ from pydantic import BaseModel
 class RoleReadSchema(BaseModel):
     id: int
     name: str
-    role_type: str
+
+# Companies schemes
+
+class ProviderReadSchema(BaseModel):
+    id: int
+    email: str
+    name: str
+
+    is_active: bool = True
+    is_superuser: bool = False
+    is_verified: bool = False
+
+    class Config:
+        from_attributes = True
+        populate_by_name = True
 
 
-class UserReadSchema(schemas.BaseUser[int]):
+class ProviderAuthReadSchema(schemas.BaseUser[int]):
+    id: int
+    email: str
+    name: str
+
+    is_active: bool = True
+    is_superuser: bool = False
+    is_verified: bool = False
+
+    class Config:
+        from_attributes = True
+        populate_by_name = True
+
+
+class ProviderCreateSchema(schemas.BaseUserCreate):
+    email: str
+    name: str
+    description: str
+
+    password: str
+
+    is_active: Optional[bool] = True
+    is_superuser: Optional[bool] = False
+    is_verified: Optional[bool] = False
+
+# Companies schemes
+
+class CompanyReadSchema(BaseModel):
+    id: int
+    email: str
+    name: str
+
+    is_active: bool = True
+    is_superuser: bool = False
+    is_verified: bool = False
+
+    class Config:
+        from_attributes = True
+        populate_by_name = True
+
+
+class CompanyAuthReadSchema(schemas.BaseUser[int]):
+    id: int
+    email: str
+    name: str
+
+    is_active: bool = True
+    is_superuser: bool = False
+    is_verified: bool = False
+
+    class Config:
+        from_attributes = True
+        populate_by_name = True
+
+
+class CompanyCreateSchema(schemas.BaseUserCreate):
+    email: str
+    name: str
+    description: str
+
+    password: str
+
+    is_active: Optional[bool] = True
+    is_superuser: Optional[bool] = False
+    is_verified: Optional[bool] = False
+
+
+# Student schemes
+
+class StudentReadSchema(BaseModel):
+    id: int
+    email: str
+    lastname: str
+    firstname: str
+    surname: str
+    role: RoleReadSchema
+    role_id: int
+
+    is_active: bool = True
+    is_superuser: bool = False
+    is_verified: bool = False
+
+    class Config:
+        from_attributes = True
+        populate_by_name = True
+
+
+class StudentAuthReadSchema(schemas.BaseUser[int]):
     id: int
     email: str
     lastname: str
@@ -23,11 +124,11 @@ class UserReadSchema(schemas.BaseUser[int]):
     is_verified: bool = False
 
     class Config:
-        orm_mode = True
-        allow_population_by_field_name = True
+        from_attributes = True
+        populate_by_name = True
 
 
-class UserCreateSchema(schemas.BaseUserCreate):
+class StudentCreateSchema(schemas.BaseUserCreate):
     email: str
 
     lastname: str

@@ -1,18 +1,9 @@
 from fastapi import APIRouter
-from auth_setup import auth_backend, fastapi_users
-from api.schemas.user_schemas import UserReadSchema, UserCreateSchema
+from api.routes.user_routes import router as user_router
+from api.routes.practice_routes import router as practice_router
 
 
 router = APIRouter()
 
-router.include_router(
-    fastapi_users.get_auth_router(auth_backend),
-    prefix='/users',
-    tags=['Users'],
-)
-
-router.include_router(
-    fastapi_users.get_register_router(UserReadSchema, UserCreateSchema),
-    prefix='/users',
-    tags=['Users'],
-)
+router.include_router(user_router)
+router.include_router(practice_router)

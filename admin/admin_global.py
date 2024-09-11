@@ -1,4 +1,5 @@
-from admin.models.user_admin import UserAdmin, RoleAdmin
+from admin.models.user_admin import *
+from admin.models.practice_admin import *
 from typing import Union
 from sqladmin.authentication import AuthenticationBackend
 from starlette.requests import Request
@@ -25,4 +26,5 @@ class AdminAuth(AuthenticationBackend):
         return True
 
 
-admin_models = [UserAdmin, RoleAdmin]
+admin_models = [RoleAdmin, StudentAdmin, CompanyAdmin,
+                ProviderAdmin, PracticeCategoryAdmin, PracticeAdmin]

@@ -1,4 +1,4 @@
-from typing import Union
+from typing import Union, List
 from pydantic import BaseModel
 
 
@@ -37,7 +37,7 @@ class GoogleOAUTHConfigsModel(BaseModel):
     OAUTH_CLIENT_ID: Union[str]
     OAUTH_CLIENT_SECRET: Union[str]
     OAUTH_SERVER_METADATA: Union[str]
-    OAUTH_CLIENT_EMAIL: Union[str]
+    OAUTH_CLIENT_EMAILS: Union[str]
 
 
 # class LogsConfigModel(BaseModel):

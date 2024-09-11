@@ -59,7 +59,7 @@ async def login_google(request: Request) -> RedirectResponse:
     token = await google.authorize_access_token(request)
     user = token.get('userinfo')
 
-    if user['email'] == config_parameters.OAUTH_CLIENT_EMAIL:
+    if user['email'] in config_parameters.OAUTH_CLIENT_EMAILS.split(','):
         request.session['user'] = user
 
     return RedirectResponse(request.url_for("admin:index"))
