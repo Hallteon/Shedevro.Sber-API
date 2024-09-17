@@ -7,7 +7,8 @@ from models.practice_models import Student, Provider, Company
 from settings import config_parameters
 
 
-cookie_transport = CookieTransport(cookie_name=config_parameters.AUTH_COOKIE_NAME, cookie_max_age=3600)
+cookie_transport = CookieTransport(cookie_name=config_parameters.AUTH_COOKIE_NAME, cookie_max_age=3600,
+                                   cookie_secure=True, cookie_samesite='none')
 
 
 def get_jwt_strategy() -> JWTStrategy:

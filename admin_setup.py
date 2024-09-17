@@ -12,6 +12,7 @@ oauth.register(
     client_kwargs={
         'scope': 'openid email profile',
         'prompt': 'select_account',
+        'verify': False
     },
 )
 

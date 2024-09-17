@@ -25,7 +25,7 @@ def create_app() -> FastAPI:
 
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=["*"],
+        allow_origins=["http://localhost:3000"],
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
@@ -54,7 +54,7 @@ async def on_startup_():
         admin.add_view(model)
 
 
-@admin.app.route("/auth/google")
+@admin.app.route('/auth/google')
 async def login_google(request: Request) -> RedirectResponse:
     token = await google.authorize_access_token(request)
     user = token.get('userinfo')

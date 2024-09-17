@@ -32,7 +32,7 @@ async def create_practice(practice: PracticeCreateSchema,
 
 
 @router.get('/get/{practice_id}', response_model=PracticeReadSchema)
-async def read_practice(practice_id: int, session: AsyncSession = Depends(get_async_session)):
+async def get_practice(practice_id: int, session: AsyncSession = Depends(get_async_session)):
     practice_query = await session.execute(select(Practice).filter(Practice.id == practice_id))
     practice = practice_query.scalars().first()
 
@@ -43,15 +43,15 @@ async def read_practice(practice_id: int, session: AsyncSession = Depends(get_as
 
 
 @router.get('/get_all', response_model=List[PracticeReadSchema])
-async def read_practices(session: AsyncSession = Depends(get_async_session)):
+async def get_practices(session: AsyncSession = Depends(get_async_session)):
     practice_query = await session.execute(select(Practice))
     practices = practice_query.scalars().all()
 
     return practices
 
 
-@router.put('/get/{practice_id}', response_model=PracticeReadSchema)
-async def get_practice(practice_id: int, practice_update: PracticeCreateSchema,
+@router.put('/update/{practice_id}', response_model=PracticeReadSchema)
+async def update_practice(practice_id: int, practice_update: PracticeCreateSchema,
                       session: AsyncSession = Depends(get_async_session)):
     practice_query = await session.execute(select(Practice).filter(Practice.id == practice_id))
     practice = practice_query.scalars().first()
